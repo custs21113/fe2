@@ -1,0 +1,11 @@
+1)
+git add *
+git commit -m 'test'
+git push origin master
+
+3)
+23541
+EventLoop模型里，顺序执行代码中遇到的语句，其次执行微任务中的Promise，最后执行宏任务中的setTimeout，
+所以代码执行时遇到setTimeout会将console.log(1)压入宏任务队列中等待执行；
+而Promise构造语句中的语句是同步执行的，所以console.log(2)被直接输出，而resolve()是异步的，所以将他压入微任务队列中等待执行，然后resolve()后的console.log(3)被直接输出，然后执行console.log(5)；
+代码中的同步代码已全部输出，接着执行微任务中的console.log(4),最后执行宏任务中的console.log(1)；
